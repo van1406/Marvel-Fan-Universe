@@ -1,0 +1,481 @@
+/* =============================================
+   MARVEL AUTH — Cinematic Black / Red Theme
+   ============================================= */
+
+:root {
+  --marvel-red: #e23636;
+  --marvel-red-dark: #b01010;
+  --marvel-red-glow: rgba(226, 54, 54, 0.45);
+  --marvel-black: #0a0a0a;
+  --marvel-dark: #111111;
+  --marvel-card: rgba(16, 16, 16, 0.82);
+  --marvel-card-border: rgba(226, 54, 54, 0.18);
+  --marvel-text: #f0f0f0;
+  --marvel-text-muted: #888;
+  --marvel-input-bg: rgba(255, 255, 255, 0.04);
+  --marvel-input-border: rgba(255, 255, 255, 0.1);
+  --marvel-input-focus: rgba(226, 54, 54, 0.5);
+  --radius: 12px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display: "Bebas Neue", "Arial Black", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ---- RESET ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--marvel-black);
+  color: var(--marvel-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ---- AUTH PAGE LAYOUT ---- */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+  position: relative;
+}
+
+/* ---- CARD ---- */
+.auth-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+  background: var(--marvel-card);
+  border: 1px solid var(--marvel-card-border);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow:
+    0 0 60px rgba(226, 54, 54, 0.06),
+    0 20px 60px rgba(0, 0, 0, 0.6);
+  animation: cardAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---- LOGO ---- */
+.auth-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.auth-logo img {
+  height: 56px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px var(--marvel-red-glow));
+  transition: filter var(--transition);
+}
+
+.auth-logo img:hover {
+  filter: drop-shadow(0 0 30px var(--marvel-red-glow)) brightness(1.15);
+}
+
+/* ---- TITLE ---- */
+.auth-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+  margin-bottom: 4px;
+  color: var(--marvel-text);
+}
+
+.auth-subtitle {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--marvel-text-muted);
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+
+/* ---- TABS (Login / Sign Up) ---- */
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 28px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--marvel-input-border);
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  color: var(--marvel-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+}
+
+.auth-tab:hover {
+  color: var(--marvel-text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.auth-tab.active {
+  color: #fff;
+  background: rgba(226, 54, 54, 0.15);
+}
+
+.auth-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 16%;
+  right: 16%;
+  height: 2px;
+  background: var(--marvel-red);
+  border-radius: 2px 2px 0 0;
+  box-shadow: 0 0 8px var(--marvel-red-glow);
+}
+
+/* ---- FORM ---- */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: formFade 0.35s ease both;
+}
+
+@keyframes formFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--marvel-text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--marvel-input-bg);
+  border: 1px solid var(--marvel-input-border);
+  border-radius: 8px;
+  color: var(--marvel-text);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  outline: none;
+  transition: all var(--transition);
+}
+
+.form-group input::placeholder {
+  color: #555;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--marvel-input-focus);
+  box-shadow: 0 0 0 3px rgba(226, 54, 54, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.form-group select option {
+  background: #1a1a1a;
+  color: var(--marvel-text);
+}
+
+/* ---- PASSWORD ROW ---- */
+.password-row {
+  position: relative;
+}
+
+.password-row input {
+  padding-right: 44px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--marvel-text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px;
+  transition: color var(--transition);
+}
+
+.password-toggle:hover {
+  color: var(--marvel-red);
+}
+
+/* ---- BUTTON ---- */
+.auth-btn {
+  width: 100%;
+  padding: 13px 0;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-btn--primary {
+  background: linear-gradient(135deg, var(--marvel-red), var(--marvel-red-dark));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(226, 54, 54, 0.3);
+}
+
+.auth-btn--primary:hover {
+  box-shadow: 0 6px 30px rgba(226, 54, 54, 0.45);
+  transform: translateY(-1px);
+}
+
+.auth-btn--primary:active {
+  transform: translateY(0);
+}
+
+/* Shimmer sweep */
+.auth-btn--primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.auth-btn--primary:hover::before {
+  left: 100%;
+}
+
+/* ---- DIVIDER ---- */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+  color: var(--marvel-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--marvel-input-border);
+}
+
+/* ---- FOOTER ---- */
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.78rem;
+  color: var(--marvel-text-muted);
+}
+
+.auth-footer a {
+  color: var(--marvel-red);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.auth-footer a:hover {
+  color: #ff5555;
+  text-decoration: underline;
+}
+
+/* ---- ERROR TEXT ---- */
+.field-error {
+  font-size: 0.75rem;
+  color: var(--marvel-red);
+  margin-top: 2px;
+}
+
+/* Server-side error banner (wrong password, duplicate email, backend down) */
+.form-error {
+  font-size: 0.8rem;
+  color: var(--marvel-red);
+  background: rgba(220, 20, 20, 0.08);
+  border: 1px solid rgba(220, 20, 20, 0.35);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 32px 22px;
+    border-radius: 16px;
+  }
+
+  .auth-title {
+    font-size: 1.65rem;
+  }
+
+  .auth-logo img {
+    height: 44px;
+  }
+}
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--marvel-black);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--marvel-red-dark);
+}
+
+/* =============================================
+   MARVEL INTRO — Fullscreen Video Overlay
+   ============================================= */
+.marvel-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: introFadeIn 0.4s ease both;
+}
+
+@keyframes introFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.marvel-intro__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;       /* letterbox without cropping */
+}
+
+/* On very tall screens, fill height instead */
+@media (min-aspect-ratio: 21/9) {
+  .marvel-intro__video {
+    object-fit: cover;
+  }
+}
+
+/* Mobile: fill screen edge-to-edge */
+@media (max-width: 768px) {
+  .marvel-intro__video {
+    object-fit: cover;
+  }
+}
+
+/* Skip button */
+.marvel-intro__skip {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--transition);
+  z-index: 10;
+}
+
+.marvel-intro__skip:hover {
+  background: rgba(226, 54, 54, 0.35);
+  border-color: var(--marvel-red);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .marvel-intro__skip {
+    bottom: 20px;
+    right: 20px;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+  }
+}

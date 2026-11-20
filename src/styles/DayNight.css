@@ -1,0 +1,593 @@
+/* =============================================
+   DAY MODE — site-wide light theme
+   Applied via `theme-day` on <body> (Day is the
+   default after login). Night mode simply removes
+   it, restoring the original dark styles.
+   Loaded last so it wins ties on equal specificity.
+   The moving backgrounds are left untouched.
+   ============================================= */
+
+/* ---- SHARED HELPERS ---- */
+.theme-day ::-webkit-scrollbar-track {
+  background: #e7eef8;
+}
+
+.theme-day ::-webkit-scrollbar-thumb {
+  background: #b9c6d8;
+}
+
+.theme-day ::-webkit-scrollbar-thumb:hover {
+  background: #e23636;
+}
+
+/* =============================================
+   DASHBOARD
+   ============================================= */
+
+.theme-day .dashboard__topbar {
+  background: rgba(255, 255, 255, 0.84);
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+.theme-day .topbar__title {
+  color: #16181d;
+}
+
+.theme-day .topbar__name {
+  color: rgba(20, 24, 32, 0.7);
+}
+
+.theme-day .topbar__menu-btn span {
+  background: #16181d;
+}
+
+.theme-day .sidebar {
+  background: rgba(255, 255, 255, 0.94);
+  border-right-color: rgba(15, 23, 42, 0.08);
+}
+
+.theme-day .sidebar__item {
+  color: rgba(20, 24, 32, 0.65);
+}
+
+.theme-day .sidebar__item:hover {
+  background: rgba(226, 54, 54, 0.08);
+  color: #16181d;
+}
+
+.theme-day .sidebar__item--active {
+  background: rgba(226, 54, 54, 0.12);
+  color: #16181d;
+}
+
+.theme-day .sidebar__footer {
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+.theme-day .sidebar__chevron {
+  color: rgba(226, 54, 54, 0.85);
+}
+
+.theme-day .explore-menu {
+  background: rgba(255, 255, 255, 0.97);
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow:
+    0 12px 32px rgba(15, 23, 42, 0.12),
+    inset 0 0 24px rgba(226, 54, 54, 0.04);
+}
+
+.theme-day .explore-menu__item {
+  color: rgba(20, 24, 32, 0.7);
+}
+
+.theme-day .explore-menu__item:hover {
+  background: rgba(226, 54, 54, 0.1);
+  color: #16181d;
+  box-shadow: inset 0 0 16px rgba(226, 54, 54, 0.06);
+}
+
+.theme-day .dash-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.09);
+}
+
+.theme-day .dash-card__title {
+  color: #16181d;
+}
+
+.theme-day .dash-card__desc {
+  color: rgba(20, 24, 32, 0.6);
+}
+
+/* =============================================
+   MARVEL HISTORY
+   ============================================= */
+
+.theme-day .marvel-history {
+  background: #eaf3fc;
+}
+
+.theme-day .mh-bg-dark {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.62) 0%,
+      rgba(238, 246, 255, 0.5) 30%,
+      rgba(238, 246, 255, 0.55) 60%,
+      rgba(255, 255, 255, 0.78) 100%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(230, 241, 255, 0.72) 100%
+    );
+}
+
+.theme-day .mh-hero__overlay {
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 30%,
+      rgba(226, 54, 54, 0.1) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 20% 80%,
+      rgba(60, 120, 230, 0.12) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.45) 35%,
+      rgba(234, 243, 255, 0.9) 70%,
+      #eaf3fc 100%
+    );
+}
+
+/* text — primary */
+.theme-day .mh-hero__title-line1,
+.theme-day .mh-section__title,
+.theme-day .mh-origin__text strong,
+.theme-day .mh-founder__text strong,
+.theme-day .mh-founder__legends-title,
+.theme-day .mh-founder__legend-info h4,
+.theme-day .timeline-item__title,
+.theme-day .leadership-card__name,
+.theme-day .mh-years__label {
+  color: #16181d;
+}
+
+/* text — secondary */
+.theme-day .mh-hero__subtitle,
+.theme-day .mh-origin__text p,
+.theme-day .mh-origin__comic-info p,
+.theme-day .mh-founder__text p,
+.theme-day .mh-founder__bio-value,
+.theme-day .timeline-item__desc {
+  color: rgba(20, 24, 32, 0.72);
+}
+
+/* text — muted */
+.theme-day .mh-stat__label,
+.theme-day .mh-section__subtitle-text,
+.theme-day .mh-founder__legend-info p:last-child,
+.theme-day .leadership-card__since,
+.theme-day .leadership-card__desc,
+.theme-day .mh-years__text,
+.theme-day .mh-footer__credit {
+  color: rgba(20, 24, 32, 0.55);
+}
+
+/* panels */
+.theme-day .mh-origin__comic-card,
+.theme-day .mh-founder__bio-item,
+.theme-day .mh-founder__legend,
+.theme-day .timeline-item__card,
+.theme-day .leadership-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.09);
+}
+
+.theme-day .mh-founder__legend:hover,
+.theme-day .leadership-card:hover {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.theme-day .mh-timeline-section {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.theme-day .mh-leadership {
+  background: rgba(235, 243, 255, 0.6);
+}
+
+.theme-day .timeline-item__dot {
+  background: #ffffff;
+}
+
+/* buttons */
+.theme-day .mh-back,
+.theme-day .mh-footer__back {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.14);
+  color: rgba(20, 24, 32, 0.78);
+}
+
+.theme-day .mh-back:hover,
+.theme-day .mh-footer__back:hover {
+  color: #16181d;
+}
+
+/* =============================================
+   MARVEL MOVIES
+   ============================================= */
+
+.theme-day .marvel-movies {
+  background: #eaf3fc;
+}
+
+.theme-day .mm-bg-dark {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.62) 0%,
+      rgba(238, 246, 255, 0.5) 30%,
+      rgba(238, 246, 255, 0.55) 60%,
+      rgba(255, 255, 255, 0.78) 100%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(230, 241, 255, 0.72) 100%
+    );
+}
+
+.theme-day .mm-hero__overlay {
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 30%,
+      rgba(226, 54, 54, 0.1) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 20% 80%,
+      rgba(60, 120, 230, 0.12) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.45) 35%,
+      rgba(234, 243, 255, 0.9) 70%,
+      #eaf3fc 100%
+    );
+}
+
+/* text — primary */
+.theme-day .mm-hero__line1,
+.theme-day .mm-phase__title,
+.theme-day .mmc__title,
+.theme-day .mmc:hover .mmc__title {
+  color: #16181d;
+}
+
+/* text — secondary */
+.theme-day .mm-hero__subtitle,
+.theme-day .mm-phase__tagline,
+.theme-day .mmc__date,
+.theme-day .mmc__qi-value,
+.theme-day .mmc__di-value {
+  color: rgba(20, 24, 32, 0.72);
+}
+
+/* keep red highlights readable */
+.theme-day .mmc__di-value--highlight {
+  color: #c8102e;
+}
+
+/* text — muted */
+.theme-day .mm-hero__stat-label,
+.theme-day .mm-phase__count-label,
+.theme-day .mmc__year,
+.theme-day .mmc__qi-label,
+.theme-day .mmc__arrow,
+.theme-day .mmc__di-label,
+.theme-day .mm-footer__credit {
+  color: rgba(20, 24, 32, 0.55);
+}
+
+.theme-day .mmc--open .mmc__arrow {
+  color: #c8102e;
+}
+
+.theme-day .mm-phase__num {
+  color: rgba(226, 54, 54, 0.3);
+}
+
+.theme-day .mm-phase__header {
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+/* panels */
+.theme-day .mmc {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.09);
+}
+
+.theme-day .mmc__qi {
+  background: rgba(15, 23, 42, 0.045);
+  border-color: rgba(15, 23, 42, 0.06);
+}
+
+.theme-day .mmc__di {
+  background: rgba(226, 54, 54, 0.06);
+  border-color: rgba(226, 54, 54, 0.14);
+}
+
+/* buttons */
+.theme-day .mm-back,
+.theme-day .mm-footer__back {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.14);
+  color: rgba(20, 24, 32, 0.78);
+}
+
+.theme-day .mm-back:hover,
+.theme-day .mm-footer__back:hover {
+  color: #16181d;
+}
+
+/* =============================================
+   ROAD TO DOOMSDAY
+   ============================================= */
+
+.theme-day .rttd {
+  background: #eaf3fc;
+}
+
+.theme-day .rttd-bg-dark {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65) 0%,
+      rgba(238, 246, 255, 0.5) 30%,
+      rgba(238, 246, 255, 0.55) 60%,
+      rgba(255, 255, 255, 0.82) 100%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(230, 241, 255, 0.72) 100%
+    );
+}
+
+.theme-day .rttd-hero__overlay {
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 30%,
+      rgba(226, 54, 54, 0.1) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 20% 80%,
+      rgba(60, 120, 230, 0.12) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.45) 35%,
+      rgba(234, 243, 255, 0.9) 70%,
+      #eaf3fc 100%
+    );
+}
+
+/* text — primary */
+.theme-day .rttd-hero__line1,
+.theme-day .rttd-card__title,
+.theme-day .rttd-card:hover .rttd-card__title {
+  color: #16181d;
+}
+
+/* text — secondary */
+.theme-day .rttd-hero__subtitle,
+.theme-day .rttd-card__date,
+.theme-day .rttd-card__qi-value,
+.theme-day .rttd-card__di-value,
+.theme-day .rttd-doomsday__card-date,
+.theme-day .rttd-doomsday__card-qi-value {
+  color: rgba(20, 24, 32, 0.72);
+}
+
+.theme-day .rttd-card__di-value--highlight {
+  color: #c8102e;
+}
+
+/* text — muted */
+.theme-day .rttd-hero__scroll-hint,
+.theme-day .rttd-card__year,
+.theme-day .rttd-card__qi-label,
+.theme-day .rttd-card__di-label,
+.theme-day .rttd-card__arrow,
+.theme-day .rttd-doomsday__card-year,
+.theme-day .rttd-doomsday__card-qi-label,
+.theme-day .rttd-progress,
+.theme-day .rttd-progress__sep,
+.theme-day .rttd-progress__total,
+.theme-day .rttd-progress__label,
+.theme-day .rttd-footer__credit {
+  color: rgba(20, 24, 32, 0.55);
+}
+
+.theme-day .rttd-card--expanded .rttd-card__arrow {
+  color: #c8102e;
+}
+
+/* doomsday card title keeps its gradient, recolored for light bg */
+.theme-day .rttd-doomsday__card-title {
+  background-image: linear-gradient(
+    135deg,
+    #16181d 0%,
+    #ff4444 55%,
+    #e23636 100%
+  );
+}
+
+/* panels */
+.theme-day .rttd-card,
+.theme-day .rttd-doomsday__card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+.theme-day .rttd-card__qi,
+.theme-day .rttd-doomsday__card-qi {
+  background: rgba(15, 23, 42, 0.045);
+  border-color: rgba(15, 23, 42, 0.07);
+}
+
+.theme-day .rttd-card__di {
+  background: rgba(226, 54, 54, 0.06);
+  border-color: rgba(226, 54, 54, 0.14);
+}
+
+.theme-day .rttd-timeline-wrapper {
+  scrollbar-color: rgba(226, 54, 54, 0.35) rgba(15, 23, 42, 0.08);
+}
+
+.theme-day .rttd-timeline-wrapper::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.06);
+}
+
+/* buttons */
+.theme-day .rttd-back,
+.theme-day .rttd-footer__back {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.14);
+  color: rgba(20, 24, 32, 0.78);
+}
+
+.theme-day .rttd-back:hover,
+.theme-day .rttd-footer__back:hover {
+  color: #16181d;
+}
+
+.theme-day .rttd-scroll-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(15, 23, 42, 0.14);
+  color: rgba(20, 24, 32, 0.75);
+}
+
+.theme-day .rttd-scroll-btn:hover:not(:disabled) {
+  background: rgba(226, 54, 54, 0.14);
+  border-color: rgba(226, 54, 54, 0.4);
+  color: #16181d;
+}
+
+/* =============================================
+   DOOMSDAY COUNTDOWN
+   ============================================= */
+
+.theme-day .ddc {
+  background: #eaf3fc;
+}
+
+.theme-day .ddc-bg img {
+  filter: brightness(1.06) contrast(1.02) saturate(1.05);
+}
+
+.theme-day .ddc-overlay {
+  background:
+    radial-gradient(
+      ellipse 75% 60% at 50% 44%,
+      rgba(226, 40, 40, 0.12) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 95% 95% at 50% 50%,
+      rgba(255, 255, 255, 0) 22%,
+      rgba(234, 243, 255, 0.85) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.72) 0%,
+      rgba(255, 255, 255, 0.35) 30%,
+      rgba(240, 247, 255, 0.5) 62%,
+      rgba(255, 255, 255, 0.9) 100%
+    );
+}
+
+.theme-day .ddc-badge {
+  color: #c1121f;
+}
+
+.theme-day .ddc-title__kicker,
+.theme-day .ddc-date__text {
+  color: #16181d;
+}
+
+.theme-day .ddc-subtitle {
+  color: rgba(20, 24, 32, 0.7);
+}
+
+.theme-day .ddc-unit__num {
+  color: #16181d;
+  text-shadow:
+    0 0 12px rgba(226, 54, 54, 0.35),
+    0 2px 10px rgba(255, 255, 255, 0.7);
+}
+
+.theme-day .ddc-unit__num--sec {
+  animation: ddcSecPulseDay 1s ease-out infinite;
+}
+
+@keyframes ddcSecPulseDay {
+  0% {
+    text-shadow:
+      0 0 16px rgba(226, 54, 54, 0.55),
+      0 2px 10px rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    text-shadow:
+      0 0 8px rgba(226, 54, 54, 0.28),
+      0 2px 10px rgba(255, 255, 255, 0.7);
+  }
+}
+
+.theme-day .ddc-unit__label {
+  color: rgba(190, 32, 32, 0.9);
+}
+
+.theme-day .ddc-sep {
+  color: rgba(226, 54, 54, 0.65);
+  text-shadow: 0 0 10px rgba(226, 54, 54, 0.3);
+}
+
+.theme-day .ddc-arrived {
+  color: #16181d;
+  text-shadow:
+    0 0 14px rgba(226, 54, 54, 0.5),
+    0 0 34px rgba(226, 54, 54, 0.25);
+}
+
+.theme-day .ddc-back {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.14);
+  color: rgba(20, 24, 32, 0.78);
+}
+
+.theme-day .ddc-back:hover {
+  color: #16181d;
+}
+
+.theme-day .ddc-footer__back {
+  color: rgba(20, 24, 32, 0.7);
+}
+
+.theme-day .ddc-footer__back:hover {
+  color: #16181d;
+}
+
+.theme-day .ddc-footer__credit {
+  color: rgba(20, 24, 32, 0.5);
+}

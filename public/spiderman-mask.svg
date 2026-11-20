@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" width="420" height="520" role="img" aria-label="Stylised Spider-Man mask">
+  <defs>
+    <radialGradient id="suit" cx="42%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#ff5a5a" />
+      <stop offset="0.42" stop-color="#d81f1f" />
+      <stop offset="0.78" stop-color="#9c1111" />
+      <stop offset="1" stop-color="#5d0606" />
+    </radialGradient>
+    <linearGradient id="lens" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="0.55" stop-color="#f0f5ff" />
+      <stop offset="1" stop-color="#aebfd6" />
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0.45" x2="0" y2="1">
+      <stop offset="0" stop-color="#000000" stop-opacity="0" />
+      <stop offset="1" stop-color="#000000" stop-opacity="0.55" />
+    </linearGradient>
+    <clipPath id="head">
+      <path d="M210,18 C118,18 58,100 58,198 C58,300 122,412 210,478 C298,412 362,300 362,198 C362,100 302,18 210,18 Z" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#head)">
+    <rect width="420" height="520" fill="url(#suit)" />
+
+    <!-- webbing -->
+    <g fill="none" stroke="#210707" stroke-opacity="0.55" stroke-width="3">
+      <!-- radial strands -->
+      <path d="M210,215 L-90,210" />
+      <path d="M210,215 L-72,313" />
+      <path d="M210,215 L-20,403" />
+      <path d="M210,215 L60,470" />
+      <path d="M210,215 L158,505" />
+      <path d="M210,215 L262,505" />
+      <path d="M210,215 L360,470" />
+      <path d="M210,215 L440,403" />
+      <path d="M210,215 L492,313" />
+      <path d="M210,215 L510,210" />
+      <path d="M210,215 L492,107" />
+      <path d="M210,215 L440,17" />
+      <path d="M210,215 L360,-50" />
+      <path d="M210,215 L262,-85" />
+      <path d="M210,215 L158,-85" />
+      <path d="M210,215 L60,-50" />
+      <path d="M210,215 L-20,17" />
+      <path d="M210,215 L-72,107" />
+
+      <!-- webbing rings -->
+      <ellipse cx="210" cy="215" rx="58" ry="52" stroke-opacity="0.4" />
+      <ellipse cx="210" cy="215" rx="100" ry="92" stroke-opacity="0.35" />
+      <ellipse cx="210" cy="215" rx="146" ry="138" stroke-opacity="0.3" />
+      <ellipse cx="210" cy="215" rx="196" ry="188" stroke-opacity="0.26" />
+      <ellipse cx="210" cy="215" rx="250" ry="246" stroke-opacity="0.22" />
+    </g>
+
+    <rect y="250" width="420" height="270" fill="url(#shade)" />
+  </g>
+
+  <!-- lenses -->
+  <g stroke="#2a0808" stroke-width="8" stroke-linejoin="round">
+    <path d="M108,198 C124,164 178,156 202,190 C192,218 148,236 108,198 Z" fill="url(#lens)" />
+    <path d="M312,198 C296,164 242,156 218,190 C228,218 272,236 312,198 Z" fill="url(#lens)" />
+  </g>
+
+  <path d="M210,18 C118,18 58,100 58,198 C58,300 122,412 210,478 C298,412 362,300 362,198 C362,100 302,18 210,18 Z"
+        fill="none" stroke="#2a0808" stroke-opacity="0.5" stroke-width="4" />
+</svg>

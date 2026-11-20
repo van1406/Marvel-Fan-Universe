@@ -1,0 +1,426 @@
+/* =============================================
+   DOOMSDAY COUNTDOWN — full-screen Doom background
+   ============================================= */
+
+/* ---- BASE ---- */
+.ddc {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #050108;
+  overflow-x: hidden;
+}
+
+/* ---- FULL-SCREEN DOCTOR DOOM IMAGE ---- */
+.ddc-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ddc-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: brightness(0.62) contrast(1.08) saturate(1.06);
+  transform: scale(1.06);
+  animation: ddcBgZoom 32s ease-in-out infinite alternate;
+}
+
+@keyframes ddcBgZoom {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1.14); }
+}
+
+/* ---- CINEMATIC RED / BLACK OVERLAY + VIGNETTE ---- */
+.ddc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 75% 60% at 50% 44%, rgba(226, 40, 40, 0.16) 0%, transparent 62%),
+    radial-gradient(ellipse 95% 95% at 50% 50%, rgba(5, 0, 8, 0) 22%, rgba(5, 0, 8, 0.88) 100%),
+    linear-gradient(
+      180deg,
+      rgba(5, 0, 8, 0.82) 0%,
+      rgba(5, 0, 8, 0.34) 30%,
+      rgba(5, 0, 8, 0.5) 62%,
+      rgba(5, 0, 8, 0.94) 100%
+    );
+}
+
+/* ---- TOP NAV (matches other pages) ---- */
+.ddc-topnav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 16px clamp(16px, 5vw, 60px);
+}
+
+.ddc-topnav__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ddc-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ddc-back:hover {
+  background: rgba(226, 54, 54, 0.14);
+  border-color: rgba(226, 54, 54, 0.35);
+  color: #fff;
+}
+
+/* ---- MAIN CONTENT ---- */
+.ddc-main {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: clamp(12px, 2.4vh, 26px);
+  padding: clamp(20px, 5vh, 56px) clamp(12px, 4vw, 40px);
+}
+
+/* staggered entrance */
+.ddc-main > * {
+  opacity: 0;
+  animation: ddcRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ddc-main > *:nth-child(1) { animation-delay: 0.05s; }
+.ddc-main > *:nth-child(2) { animation-delay: 0.15s; }
+.ddc-main > *:nth-child(3) { animation-delay: 0.25s; }
+.ddc-main > *:nth-child(4) { animation-delay: 0.35s; }
+.ddc-main > *:nth-child(5) { animation-delay: 0.45s; }
+.ddc-main > *:nth-child(6) { animation-delay: 0.55s; }
+
+@keyframes ddcRise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- BADGE ---- */
+.ddc-badge {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: clamp(0.7rem, 1.6vw, 0.95rem);
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  color: #ff7a7a;
+  background: rgba(226, 54, 54, 0.1);
+  border: 1px solid rgba(226, 54, 54, 0.4);
+  border-radius: 4px;
+  padding: 6px 16px;
+  box-shadow: 0 0 26px rgba(226, 54, 54, 0.18);
+}
+
+/* ---- TITLE ---- */
+.ddc-title {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.ddc-title__kicker {
+  display: block;
+  font-size: clamp(1.4rem, min(4.5vw, 7vh), 2.7rem);
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.ddc-title__main {
+  display: block;
+  font-size: clamp(3rem, min(12vw, 17vh), 8.5rem);
+  letter-spacing: 0.03em;
+  background: linear-gradient(135deg, #e23636 0%, #ff5252 40%, #e23636 70%, #b01010 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #e23636; /* fallback if clip unsupported */
+  filter: drop-shadow(0 0 34px rgba(226, 54, 54, 0.35));
+}
+
+/* ---- SUBTITLE ---- */
+.ddc-subtitle {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(0.82rem, 1.5vw, 1.02rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 620px;
+  margin: 0;
+}
+
+/* =============================================
+   COUNTDOWN — ONE horizontal line
+   ============================================= */
+.ddc-countdown-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: clamp(10px, 2vh, 22px) 0;
+}
+
+/* soft red glow bed behind the numbers */
+.ddc-countdown-wrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(980px, 96%);
+  height: 160%;
+  background: radial-gradient(ellipse at center, rgba(226, 54, 54, 0.2) 0%, rgba(226, 54, 54, 0.05) 45%, transparent 72%);
+  pointer-events: none;
+}
+
+.ddc-countdown {
+  --ddc-num: clamp(1.9rem, min(6.5vw, 11vh), 5.4rem);
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap; /* stays on ONE horizontal line */
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(5px, 1.5vw, 26px);
+  width: 100%;
+}
+
+.ddc-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(3px, 0.7vw, 9px);
+  min-width: 0;
+}
+
+.ddc-unit__num {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: var(--ddc-num);
+  line-height: 1;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  text-shadow:
+    0 0 8px rgba(255, 130, 130, 0.9),
+    0 0 24px rgba(226, 54, 54, 0.75),
+    0 0 60px rgba(226, 54, 54, 0.45),
+    0 2px 16px rgba(0, 0, 0, 0.65);
+}
+
+/* seconds breathe once per tick */
+.ddc-unit__num--sec {
+  animation: ddcSecPulse 1s ease-out infinite;
+}
+
+@keyframes ddcSecPulse {
+  0% {
+    text-shadow:
+      0 0 12px rgba(255, 170, 170, 1),
+      0 0 36px rgba(255, 60, 60, 0.95),
+      0 0 84px rgba(226, 54, 54, 0.6),
+      0 2px 16px rgba(0, 0, 0, 0.65);
+  }
+  100% {
+    text-shadow:
+      0 0 8px rgba(255, 130, 130, 0.9),
+      0 0 24px rgba(226, 54, 54, 0.75),
+      0 0 60px rgba(226, 54, 54, 0.45),
+      0 2px 16px rgba(0, 0, 0, 0.65);
+  }
+}
+
+.ddc-unit__label {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(0.5rem, 1.3vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 135, 135, 0.78);
+  white-space: nowrap;
+}
+
+/* "|" separators — aligned to the numbers, scaled with them */
+.ddc-sep {
+  align-self: flex-start;
+  margin-top: calc(var(--ddc-num) * 0.21);
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: calc(var(--ddc-num) * 0.55);
+  line-height: 1;
+  color: rgba(255, 90, 90, 0.55);
+  text-shadow: 0 0 14px rgba(226, 54, 54, 0.6);
+}
+
+/* ---- RELEASE DATE ---- */
+.ddc-date {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2vw, 18px);
+}
+
+.ddc-date__line {
+  width: clamp(28px, 8vw, 90px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(226, 54, 54, 0.75));
+}
+
+.ddc-date__line:last-child {
+  transform: scaleX(-1);
+}
+
+.ddc-date__text {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: clamp(0.95rem, 2.4vw, 1.5rem);
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  color: rgba(255, 255, 255, 0.88);
+  white-space: nowrap;
+}
+
+/* ---- RELEASED STATE ---- */
+.ddc-arrived {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+  color: #fff;
+  text-shadow:
+    0 0 14px rgba(255, 130, 130, 1),
+    0 0 40px rgba(226, 54, 54, 0.9),
+    0 0 90px rgba(226, 54, 54, 0.55);
+  animation: ddcArrivedPulse 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes ddcArrivedPulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.04); }
+}
+
+/* ---- FOOTER ---- */
+.ddc-footer {
+  position: relative;
+  z-index: 2;
+  padding: 18px clamp(16px, 5vw, 60px) 26px;
+}
+
+.ddc-footer__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ddc-footer__back {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.ddc-footer__back:hover {
+  color: #fff;
+  background: rgba(226, 54, 54, 0.12);
+}
+
+.ddc-footer__credit {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+/* very narrow phones — keep the single line intact */
+@media (max-width: 420px) {
+  .ddc-countdown {
+    --ddc-num: clamp(1.75rem, 8vw, 2.4rem);
+    gap: 5px;
+  }
+
+  .ddc-unit__label {
+    font-size: 0.47rem;
+    letter-spacing: 0.05em;
+    text-indent: 0.05em;
+  }
+
+  .ddc-sep {
+    font-size: calc(var(--ddc-num) * 0.5);
+  }
+}
+
+/* short screens (mobile landscape / small laptops) */
+@media (max-height: 560px) {
+  .ddc-subtitle {
+    display: none;
+  }
+
+  .ddc-main {
+    gap: clamp(8px, 2vh, 16px);
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .ddc-footer {
+    padding-top: 8px;
+    padding-bottom: 12px;
+  }
+}
+
+@media (max-height: 420px) {
+  .ddc-date,
+  .ddc-footer__credit {
+    display: none;
+  }
+}
+
+/* ---- REDUCED MOTION ---- */
+@media (prefers-reduced-motion: reduce) {
+  .ddc-bg img,
+  .ddc-unit__num--sec,
+  .ddc-arrived,
+  .ddc-main > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

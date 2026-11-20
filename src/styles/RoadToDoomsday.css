@@ -1,0 +1,1021 @@
+/* =============================================
+   ROAD TO DOOMSDAY — Straight Glowing Timeline
+   ============================================= */
+
+/* ---- BASE ---- */
+.rttd {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: #030108;
+  overflow-x: hidden;
+}
+
+/* ---- FULL-PAGE BG ---- */
+.rttd-bg {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  animation: rttdBgReveal 2.5s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.rttd-bg img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0.12;
+  filter: grayscale(0.4) brightness(0.5) drop-shadow(0 0 60px rgba(226, 54, 54, 0.06));
+  animation: rttdBgBreath 10s ease-in-out infinite alternate;
+}
+
+.rttd-bg-dark {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(3, 1, 8, 0.7) 0%, rgba(3, 1, 8, 0.4) 30%, rgba(3, 1, 8, 0.5) 60%, rgba(3, 1, 8, 0.85) 100%),
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(3, 1, 8, 0.15) 0%, rgba(3, 1, 8, 0.7) 100%);
+}
+
+@keyframes rttdBgReveal {
+  0% { opacity: 0; filter: blur(8px); }
+  100% { opacity: 1; filter: blur(0px); }
+}
+
+@keyframes rttdBgBreath {
+  0% { opacity: 0.1; filter: grayscale(0.4) brightness(0.45); }
+  100% { opacity: 0.18; filter: grayscale(0.2) brightness(0.65); }
+}
+
+/* ---- TOP NAV ---- */
+.rttd-topnav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 16px clamp(24px, 5vw, 60px);
+  pointer-events: none;
+}
+
+.rttd-topnav__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  pointer-events: auto;
+}
+
+.rttd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.rttd-back:hover {
+  background: rgba(226, 54, 54, 0.12);
+  border-color: rgba(226, 54, 54, 0.3);
+  color: #fff;
+}
+
+/* ---- HERO ---- */
+.rttd-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 clamp(24px, 5vw, 80px) clamp(48px, 8vh, 100px);
+  overflow: hidden;
+}
+
+.rttd-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.rttd-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(226, 54, 54, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(120, 0, 200, 0.15) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(3, 1, 8, 0) 0%, rgba(3, 1, 8, 0.6) 60%, #030108 100%);
+}
+
+.rttd-hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(226, 54, 54, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 54, 54, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+  animation: rttdGridPulse 8s ease-in-out infinite;
+}
+
+@keyframes rttdGridPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.rttd-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rttd-hero__content--vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rttd-hero__badge {
+  display: inline-block;
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: #e23636;
+  background: rgba(226, 54, 54, 0.08);
+  border: 1px solid rgba(226, 54, 54, 0.2);
+  border-radius: 4px;
+  padding: 6px 14px;
+  margin-bottom: 20px;
+}
+
+.rttd-hero__title {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  line-height: 0.92;
+  margin-bottom: 20px;
+}
+
+.rttd-hero__line1 {
+  display: block;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.rttd-hero__line2 {
+  display: block;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, #e23636 0%, #ff4444 40%, #e23636 70%, #b01010 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 40px rgba(226, 54, 54, 0.3));
+}
+
+.rttd-hero__subtitle {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.rttd-hero__scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: rttdHintPulse 2s ease-in-out infinite;
+}
+
+.rttd-hero__scroll-hint svg {
+  animation: rttdHintSlide 1.5s ease-in-out infinite;
+}
+
+@keyframes rttdHintPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes rttdHintSlide {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+/* =============================================
+   TIMELINE SECTION
+   ============================================= */
+.rttd-timeline-section {
+  position: relative;
+  padding: 40px 0 80px;
+}
+
+.rttd-timeline-wrapper {
+  overflow-x: auto;
+  /* overflow-x: auto forces overflow-y to auto too, so this box clips
+     vertically at its padding edge. Cards ABOVE the line anchor with
+     `bottom: calc(100% + 60px)` and grow UPWARD when expanded, so the
+     scroll area needs room for a full expanded card above the line
+     (measured: up to 546px + 60px gap - 200px line offset = 406px).
+     440px keeps every top card — collapsed and fully expanded —
+     completely visible instead of clipped. */
+  padding: 440px 0 40px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(226, 54, 54, 0.3) rgba(255, 255, 255, 0.05);
+}
+
+.rttd-timeline-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.rttd-timeline-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 3px;
+}
+
+.rttd-timeline-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(226, 54, 54, 0.3);
+  border-radius: 3px;
+}
+
+.rttd-timeline-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(226, 54, 54, 0.5);
+}
+
+.rttd-timeline {
+  position: relative;
+  min-height: 700px;
+}
+
+/* ---- SVG Line ---- */
+.rttd-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Timeline Node ---- */
+.rttd-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.rttd-node--above {
+  transform: translate(-50%, 0);
+}
+
+.rttd-node--below {
+  transform: translate(-50%, -100%);
+}
+
+.rttd-node__connector {
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(226, 54, 54, 0.4), rgba(226, 54, 54, 0.05));
+  z-index: 1;
+}
+
+.rttd-node--above .rttd-node__connector {
+  bottom: 100%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.rttd-node--below .rttd-node__connector {
+  top: 100%;
+  transform: translateX(-50%);
+}
+
+.rttd-node__dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e23636;
+  border: 2px solid rgba(226, 54, 54, 0.5);
+  box-shadow:
+    0 0 12px rgba(226, 54, 54, 0.5),
+    0 0 30px rgba(226, 54, 54, 0.2);
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.rttd-node:hover .rttd-node__dot {
+  width: 18px;
+  height: 18px;
+  box-shadow:
+    0 0 20px rgba(226, 54, 54, 0.7),
+    0 0 50px rgba(226, 54, 54, 0.3);
+}
+
+.rttd-node--active .rttd-node__dot {
+  width: 18px;
+  height: 18px;
+  background: #ff4444;
+  box-shadow:
+    0 0 20px rgba(226, 54, 54, 0.8),
+    0 0 50px rgba(226, 54, 54, 0.4);
+}
+
+.rttd-node__dot--pulse {
+  animation: rttdDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes rttdDotPulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(226, 54, 54, 0.5), 0 0 30px rgba(226, 54, 54, 0.2); }
+  50% { box-shadow: 0 0 24px rgba(226, 54, 54, 0.8), 0 0 60px rgba(226, 54, 54, 0.4); }
+}
+
+/* =============================================
+   TIMELINE CARD
+   ============================================= */
+.rttd-card {
+  position: absolute;
+  width: 210px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(14, 14, 18, 0.85);
+  border: 1px solid rgba(226, 54, 54, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+}
+
+.rttd-card--vis {
+  animation: rttdCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes rttdCardIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.rttd-card--above {
+  bottom: calc(100% + 60px);
+}
+
+.rttd-card--below {
+  top: calc(100% + 60px);
+}
+
+.rttd-card:hover {
+  transform: translateX(-50%) translateY(-4px) scale(1.02);
+  border-color: rgba(226, 54, 54, 0.35);
+  box-shadow:
+    0 8px 40px rgba(226, 54, 54, 0.12),
+    0 0 60px rgba(226, 54, 54, 0.06),
+    inset 0 0 30px rgba(226, 54, 54, 0.03);
+}
+
+.rttd-card:active {
+  transform: translateX(-50%) translateY(-1px) scale(1);
+}
+
+.rttd-card__accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #e23636 0%, #ff4444 50%, #e23636 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rttd-card:hover .rttd-card__accent {
+  opacity: 1;
+}
+
+.rttd-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.rttd-card__phase {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e23636;
+  background: rgba(226, 54, 54, 0.1);
+  border: 1px solid rgba(226, 54, 54, 0.2);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.rttd-card__year {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.1em;
+}
+
+.rttd-card__title {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: #f0f0f0;
+  margin-bottom: 3px;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rttd-card:hover .rttd-card__title {
+  color: #fff;
+}
+
+.rttd-card__date {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 10px;
+}
+
+.rttd-card__quick {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.rttd-card__qi {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.rttd-card__qi-label {
+  display: block;
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2px;
+}
+
+.rttd-card__qi-value {
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rttd-card__arrow {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.rttd-card--expanded .rttd-card__arrow {
+  transform: rotate(180deg);
+  color: #e23636;
+}
+
+/* expanded detail */
+.rttd-card__detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
+  opacity: 0;
+  padding-top: 0;
+}
+
+.rttd-card--expanded .rttd-card__detail {
+  max-height: 500px;
+  opacity: 1;
+  padding-top: 10px;
+}
+
+.rttd-card__detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.rttd-card__di {
+  background: rgba(226, 54, 54, 0.04);
+  border: 1px solid rgba(226, 54, 54, 0.08);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.rttd-card__di--full {
+  grid-column: 1 / -1;
+}
+
+.rttd-card__di-label {
+  display: block;
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2px;
+}
+
+.rttd-card__di-value {
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.rttd-card__di-value--highlight {
+  color: #e23636;
+  font-weight: 600;
+}
+
+/* Active card highlight */
+.rttd-card--active {
+  border-color: rgba(226, 54, 54, 0.4);
+  box-shadow:
+    0 0 20px rgba(226, 54, 54, 0.15),
+    0 0 40px rgba(226, 54, 54, 0.06);
+}
+
+.rttd-card--active .rttd-card__accent {
+  opacity: 1;
+}
+
+/* =============================================
+   DOOMSDAY FINAL NODE
+   ============================================= */
+.rttd-doomsday {
+  position: absolute;
+  /* Center the finale core exactly on the timeline line (line sits at the
+     node's origin; the core is centered by shifting up half its size). */
+  --doom-core: 56px;
+  top: calc(var(--doom-core) / -2);
+  transform: translate(-50%, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  opacity: 0;
+}
+
+.rttd-doomsday--vis {
+  animation: rttdDoomsdayIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes rttdDoomsdayIn {
+  from { opacity: 0; transform: translate(-50%, 20px) scale(0.9); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+.rttd-doomsday__node {
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.rttd-doomsday__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(226, 54, 54, 0.3) 0%, rgba(226, 54, 54, 0.05) 60%, transparent 70%);
+  animation: rttdDoomGlow 3s ease-in-out infinite;
+}
+
+@keyframes rttdDoomGlow {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+}
+
+.rttd-doomsday__core {
+  position: relative;
+  width: var(--doom-core);
+  height: var(--doom-core);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e23636, #ff2020, #b01010);
+  border: 3px solid rgba(226, 54, 54, 0.6);
+  box-shadow:
+    0 0 20px rgba(226, 54, 54, 0.6),
+    0 0 60px rgba(226, 54, 54, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.rttd-doomsday__node:hover .rttd-doomsday__core {
+  transform: scale(1.1);
+  box-shadow:
+    0 0 30px rgba(226, 54, 54, 0.8),
+    0 0 80px rgba(226, 54, 54, 0.4),
+    inset 0 0 25px rgba(255, 255, 255, 0.15);
+}
+
+.rttd-doomsday__icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Doomsday Card */
+.rttd-doomsday__card {
+  width: 260px;
+  background: rgba(14, 14, 18, 0.9);
+  border: 1px solid rgba(226, 54, 54, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+}
+
+.rttd-doomsday__card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(226, 54, 54, 0.3), rgba(255, 32, 32, 0.1), rgba(176, 16, 16, 0.2));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.rttd-doomsday__card:hover::before {
+  opacity: 1;
+}
+
+.rttd-doomsday__card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(226, 54, 54, 0.5);
+  box-shadow:
+    0 12px 50px rgba(226, 54, 54, 0.2),
+    0 0 80px rgba(226, 54, 54, 0.1),
+    inset 0 0 40px rgba(226, 54, 54, 0.04);
+}
+
+.rttd-doomsday__card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e23636, #ff4444, #ff2020, #e23636);
+}
+
+.rttd-doomsday__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.rttd-doomsday__card-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff4444;
+  background: rgba(226, 54, 54, 0.12);
+  border: 1px solid rgba(226, 54, 54, 0.25);
+  border-radius: 4px;
+  padding: 3px 10px;
+}
+
+.rttd-doomsday__card-year {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.rttd-doomsday__card-title {
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin-bottom: 4px;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fff 0%, #ff4444 50%, #e23636 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rttd-doomsday__card-date {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 14px;
+}
+
+.rttd-doomsday__card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.rttd-doomsday__card-qi {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.rttd-doomsday__card-qi-label {
+  display: block;
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 3px;
+}
+
+.rttd-doomsday__card-qi-value {
+  display: block;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Doomsday expanded detail */
+.rttd-doomsday__card-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
+  opacity: 0;
+  padding-top: 0;
+}
+
+.rttd-doomsday__card--expanded .rttd-doomsday__card-detail {
+  max-height: 500px;
+  opacity: 1;
+  padding-top: 12px;
+}
+
+/* =============================================
+   PROGRESS COUNTER
+   ============================================= */
+.rttd-progress {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 60px) 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: "Bebas Neue", "Arial Black", sans-serif;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.rttd-progress__current {
+  font-size: 1.4rem;
+  color: #e23636;
+  letter-spacing: 0.04em;
+}
+
+.rttd-progress__sep {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.rttd-progress__total {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.04em;
+}
+
+.rttd-progress__label {
+  margin-left: 12px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+/* =============================================
+   SCROLL ARROWS
+   ============================================= */
+.rttd-scroll-arrows {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  display: flex;
+  gap: 8px;
+  z-index: 50;
+}
+
+.rttd-scroll-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(14, 14, 18, 0.8);
+  border: 1px solid rgba(226, 54, 54, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.rttd-scroll-btn:hover:not(:disabled) {
+  background: rgba(226, 54, 54, 0.15);
+  border-color: rgba(226, 54, 54, 0.4);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(226, 54, 54, 0.2);
+}
+
+.rttd-scroll-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.rttd-footer {
+  border-top: 1px solid rgba(226, 54, 54, 0.06);
+  padding: 32px 0;
+}
+
+.rttd-footer__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rttd-footer__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.rttd-footer__back:hover {
+  background: rgba(226, 54, 54, 0.1);
+  border-color: rgba(226, 54, 54, 0.25);
+  color: #fff;
+}
+
+.rttd-footer__credit {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* =============================================
+   RESPONSIVE — Tablet
+   ============================================= */
+@media (max-width: 1024px) {
+  .rttd-hero {
+    min-height: 50vh;
+  }
+
+  .rttd-timeline-section {
+    padding: 20px 0 60px;
+  }
+
+  .rttd-card {
+    width: 190px;
+    padding: 14px;
+  }
+
+  .rttd-doomsday__card {
+    width: 230px;
+    padding: 18px;
+  }
+}
+
+/* =============================================
+   RESPONSIVE — Mobile
+   ============================================= */
+@media (max-width: 640px) {
+  .rttd-topnav {
+    padding: 12px 16px;
+  }
+
+  .rttd-hero {
+    min-height: 45vh;
+    padding: 0 20px 32px;
+  }
+
+  .rttd-timeline-section {
+    padding: 10px 0 40px;
+  }
+
+  .rttd-timeline-wrapper {
+    /* same clipping fix as above — cards are narrower here so their
+       detail wraps onto more lines (measured need: 406px) */
+    padding: 440px 0 20px;
+  }
+
+  .rttd-card {
+    width: 170px;
+    padding: 12px;
+  }
+
+  .rttd-card__title {
+    font-size: 0.92rem;
+  }
+
+  .rttd-card__qi-value {
+    font-size: 0.62rem;
+  }
+
+  .rttd-doomsday__card {
+    width: 200px;
+    padding: 16px;
+  }
+
+  .rttd-doomsday__card-title {
+    font-size: 1.3rem;
+  }
+
+  .rttd-doomsday {
+    --doom-core: 44px;
+  }
+
+  .rttd-doomsday__icon {
+    font-size: 1.2rem;
+  }
+
+  .rttd-scroll-arrows {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .rttd-scroll-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .rttd-footer__inner {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
